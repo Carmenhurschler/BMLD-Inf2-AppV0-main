@@ -1,17 +1,16 @@
 import streamlit as st
 import pandas as pd
 
-st.title("Meine erste Streamlit App")
+st.title("ph-Wert Rechner")
+st.write("Hier kannst du per Eingabe von Masse und Molare Masse die Stoffmenge berechnen.")
+if st.button("Hier gehts zum Rechner"):
+    st.switch_page("ph-Wert Rechner") 
 
 # !! WICHTIG: Eure Emails müssen in der App erscheinen!!
 
 # Streamlit über den Text unten direkt in die App - cool!
 """
-Diese App wurde von folgender Person entwickelt:
-- Carmen Hurschler (hurscca1@students.zhaw.ch)
+Diese App wurde von folgenden Personen entwickelt:
+•⁠  Carmen Hurschler (hurscca1@students.zhaw.ch)
 
-
-Diese App ist das leere Gerüst für die App-Entwicklung im Modul Informatik 2 (BMLD/ZHAW)
-
-Autor: Carmen Hurschler (hurscca1@students.zhaw.ch)
 """
