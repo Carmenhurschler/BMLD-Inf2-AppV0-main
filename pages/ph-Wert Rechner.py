@@ -1,105 +1,58 @@
 import streamlit as st
-
-st.title("Unterseite A")
-
-st.write("Diese Seite ist eine Unterseite der Startseite.")
-
-import streamlit as st
-
-
-import streamlit as st
-
-# Startseite mit Titel, Beschreibung und Autoren
-def startseite():
-    st.title("pH-Wert Rechner")
-    st.write("""
-        Willkommen beim pH-Wert Rechner! 
-        Dieser Rechner hilft dir, den pH-Wert einer Lösung basierend auf der Konzentration der Wasserstoffionen (H⁺) zu berechnen.
-        
-        Der pH-Wert ist ein Mass für den Säuregehalt einer Lösung. 
-        Je niedriger der pH-Wert, desto saurer ist die Lösung. Je höher der pH-Wert, desto basischer ist sie.
-        
-        ### Mitwirkende:
-        - Carmen Hurschler (hurscca1@students.zhaw.ch)
-        
-    """)
-
-# Hauptfunktion zum Starten der App
-def main():
-    seite = st.sidebar.selectbox("Wähle eine Seite", ["Startseite", "pH-Wert Rechner"])
-    
-    if seite == "Startseite":
-        startseite()
-    elif seite == "pH-Wert Rechner":
-        from pages import ph_Wert_Rechner  # Aufruf der Unterseite mit Rechner
-
-if __name__ == "__main__":
-    main()
-
-import streamlit as st
-import math
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Funktion zur Berechnung des pH-Werts
-def berechne_ph():
-    st.title("pH-Wert Rechner")
+# Titel der App
+st.title("pH-Wert Rechner")
 
-    # Eingabefeld für Konzentration der Wasserstoffionen (H+)
-    h_plus_konzentration = st.number_input("Gib die Konzentration der Wasserstoffionen [H+] in mol/L ein:", min_value=0.0, step=0.0001)
-
-    if h_plus_konzentration > 0:
-        # Berechnung des pH-Werts
-        ph_wert = -math.log10(h_plus_konzentration)
-        
-        # Ausgabe des berechneten pH-Werts
-        st.write(f"Der berechnete pH-Wert ist: {ph_wert:.2f}")
-
-        # pH-Kategorisierung
-        if ph_wert < 7:
-            st.write("Die Lösung ist sauer.")
-            farbe = 'red'  # Farbe für sauer
-        elif ph_wert == 7:
-            st.write("Die Lösung ist neutral.")
-            farbe = 'yellow'  # Farbe für neutral
-        else:
-            st.write("Die Lösung ist basisch.")
-            farbe = 'blue'  # Farbe für basisch
-        
-        # Zeige den pH-Wert als farbigen Balken
-        zeige_ph_farb_balken(farbe, ph_wert)
-
-    else:
-        st.write("Bitte gib eine gültige Konzentration der Wasserstoffionen ein.")
-
-# Funktion zur Darstellung des pH-Werts als farbigen Balken
-def zeige_ph_farb_balken(farbe, ph_wert):
-    # Erstellen eines farbigen Balkens
-    fig, ax = plt.subplots(figsize=(6, 1))  # Balken in horizontaler Form
-    ax.barh(0, width=ph_wert, height=1, color=farbe, edgecolor='black')  # Balken mit gewählter Farbe
-
-    # Balken-Beschriftung
-    ax.text(ph_wert / 2, 0, f"pH-Wert: {ph_wert:.2f}", color="white", ha='center', va='center', fontsize=12)
-
-    # Entfernen der Achsen und Ticks
-    ax.set_xlim(0, 14)
-    ax.set_ylim(0, 1)
-    ax.set_yticks([])
-
-    # Diagramm-Titel und Legende
-    ax.set_title("pH-Wert Visualisierung", fontsize=14)
+# Erklärung zur Berechnung des pH-Werts
+st.write("""
+    Diese App hilft dir dabei, den pH-Wert einer Lösung zu berechnen und zu verstehen, ob sie sauer, neutral oder basisch ist.
+    Der pH-Wert misst, wie sauer oder basisch eine Lösung ist. Der pH-Wert reicht von 0 bis 14:
+    - Ein pH-Wert unter 7 zeigt an, dass die Lösung sauer ist.
+    - Ein pH-Wert von 7 bedeutet, dass die Lösung neutral ist.
+    - Ein pH-Wert über 7 zeigt an, dass die Lösung basisch ist.
     
-    # Legende hinzufügen
-    handles = [
-        plt.Line2D([0], [0], marker='s', color='w', label='Sauer (pH < 7)', markerfacecolor='red', markersize=10),
-        plt.Line2D([0], [0], marker='s', color='w', label='Neutral (pH = 7)', markerfacecolor='yellow', markersize=10),
-        plt.Line2D([0], [0], marker='s', color='w', label='Basisch (pH > 7)', markerfacecolor='blue', markersize=10),
-    ]
-    ax.legend(handles=handles, loc='lower center', bbox_to_anchor=(0.5, -0.2), shadow=True)
+    Gib einfach den pH-Wert ein, und die App zeigt dir an, zu welcher Kategorie der Wert gehört.
+""")
 
-    # Diagramm anzeigen
-    st.pyplot(fig)
+# Eingabe des pH-Werts durch den Benutzer
+pH_wert = st.number_input("Gib den pH-Wert ein:", min_value=0.0, max_value=14.0, step=0.1)
 
-# Aufruf der Funktion zur Berechnung
-if __name__ == "__main__":
-    berechne_ph()
+# Berechnung der Kategorie
+if pH_wert < 7:
+    kategorie = "Sauer"
+    farbe = 'lightcoral'
+elif pH_wert == 7:
+    kategorie = "Neutral"
+    farbe = 'lightblue'
+else:
+    kategorie = "Basisch"
+    farbe = 'lightgreen'
+
+# Anzeige der Kategorie
+st.write(f"Der pH-Wert von {pH_wert} ist {kategorie}.")
+
+# Erstellen eines Balkendiagramms mit Pastellfarben
+labels = ['Sauer', 'Neutral', 'Basisch']
+values = [max(0, 7 - pH_wert), 0 if pH_wert != 7 else 1, max(0, pH_wert - 7)]
+
+fig, ax = plt.subplots()
+ax.bar(labels, values, color=['lightcoral', 'lightblue', 'lightgreen'])
+
+# Diagramm anzeigen
+ax.set_ylabel('Wert')
+ax.set_title(f'Kategorisierung des pH-Werts: {kategorie}')
+st.pyplot(fig)
+
+# Bonus-Tipp: Textfeld, um den pH-Wert zu erklären
+st.write("""
+    **Erklärung der Kategorien:**
+    - **Sauer:** Ein pH-Wert unter 7 bedeutet, dass die Lösung sauer ist (z.B. Zitronensaft, Essig).
+    - **Neutral:** Ein pH-Wert von 7 bedeutet, dass die Lösung weder sauer noch basisch ist (z.B. reines Wasser).
+    - **Basisch:** Ein pH-Wert über 7 bedeutet, dass die Lösung basisch ist (z.B. Seifenlösung, Natronlauge).
+""")
+
+
+
+
