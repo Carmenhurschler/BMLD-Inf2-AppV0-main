@@ -10,6 +10,6 @@ if st.button("Hier gehts zum Rechner"):
 
 # Streamlit über den Text unten direkt in die App - cool!
 st.markdown("""
-Diese App wurde von folgenden Personen entwickelt:
-•⁠ Carmen Hurschler (hurscca1@students.zhaw.ch)
+Diese App wurde von Carmen Hurschler (hurscca1@students.zhaw.ch) im Rahmen des Moduls 'BMLD Informatik 2' an der ZHAW entwickelt.
+            
 """)
