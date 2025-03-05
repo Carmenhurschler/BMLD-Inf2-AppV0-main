@@ -8,7 +8,7 @@ st.header("Berechnung des pH-Werts")
 
 # Home Button für Navigation (Beachte: Der Name der Seite sollte ohne `.py` sein)
 if st.button("Home"):
-    st.switch_page("Start")
+    st.switch_page("Start.py")
 
 # Erklärung zur Berechnung des pH-Werts
 st.write("""
