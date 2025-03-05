@@ -4,6 +4,7 @@ import numpy as np
 
 # Titel der App
 st.title("pH-Wert Rechner")
+st.header("Berechnung des ph-Wert")
 
 # Erklärung zur Berechnung des pH-Werts
 st.write("""
