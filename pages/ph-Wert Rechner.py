@@ -10,13 +10,6 @@ st.header("Berechnung des pH-Werts")
 if st.button("Home"):
     st.switch_page("Start.py")
 
-    # Bonus-Tipp: Textfeld, um den pH-Wert zu erklären
-    st.write("""
-        **Erklärung der Kategorien:**
-        - **Sauer:** Ein pH-Wert unter 7 bedeutet, dass die Lösung sauer ist (z.B. Zitronensaft, Essig).
-        - **Neutral:** Ein pH-Wert von 7 bedeutet, dass die Lösung weder sauer noch basisch ist (z.B. reines Wasser).
-        - **Basisch:** Ein pH-Wert über 7 bedeutet, dass die Lösung basisch ist (z.B. Seifenlösung, Natronlauge).
-    """)
 
 
 # Option zur Eingabe des pH-Werts oder zur Berechnung mit [H+]
