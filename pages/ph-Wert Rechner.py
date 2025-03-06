@@ -10,16 +10,14 @@ st.header("Berechnung des pH-Werts")
 if st.button("Home"):
     st.switch_page("Start.py")
 
-# Erklärung zur Berechnung des pH-Werts
-st.write("""
-    Diese App hilft dir dabei, den pH-Wert einer Lösung zu berechnen und zu verstehen, ob sie sauer, neutral oder basisch ist.
-    Der pH-Wert misst, wie sauer oder basisch eine Lösung ist. Der pH-Wert reicht von 0 bis 14:
-    - Ein pH-Wert unter 7 zeigt an, dass die Lösung sauer ist.
-    - Ein pH-Wert von 7 bedeutet, dass die Lösung neutral ist.
-    - Ein pH-Wert über 7 zeigt an, dass die Lösung basisch ist.
-    
-    Gib einfach den pH-Wert ein, oder gib die Konzentration der Wasserstoffionen ([H+]) ein, um den pH-Wert zu berechnen.
-""")
+    # Bonus-Tipp: Textfeld, um den pH-Wert zu erklären
+    st.write("""
+        **Erklärung der Kategorien:**
+        - **Sauer:** Ein pH-Wert unter 7 bedeutet, dass die Lösung sauer ist (z.B. Zitronensaft, Essig).
+        - **Neutral:** Ein pH-Wert von 7 bedeutet, dass die Lösung weder sauer noch basisch ist (z.B. reines Wasser).
+        - **Basisch:** Ein pH-Wert über 7 bedeutet, dass die Lösung basisch ist (z.B. Seifenlösung, Natronlauge).
+    """)
+
 
 # Option zur Eingabe des pH-Werts oder zur Berechnung mit [H+]
 berechnen_mit = st.radio("Wie möchtest du den pH-Wert berechnen?", ('Direkt eingeben', 'Berechnen mit [H+]'))
