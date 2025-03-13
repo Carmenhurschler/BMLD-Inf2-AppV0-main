@@ -1,3 +1,7 @@
+# === Login manager ===
+from utils.login_manager import LoginManager
+LoginManager().go_to_login('Start.py') 
+
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
@@ -61,3 +65,6 @@ if pH_wert is not None:
     """)
 else:
     st.write("Die Konzentration der Wasserstoffionen [H+] muss größer als 0 sein, um den pH-Wert zu berechnen.")
+
+ # Save pH data
+    DataManager().append_record(session_state_key='data_df', record_dict=result)  # update data in session state and storage
