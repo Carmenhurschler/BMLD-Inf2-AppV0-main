@@ -1,4 +1,5 @@
 # === Login manager ===
+import pandas as pd
 from utils.login_manager import LoginManager
 LoginManager().go_to_login('Start.py') 
 
@@ -75,3 +76,5 @@ result = {
     'kategorie': kategorie
 }
 DataManager().append_record(session_state_key='data_df', record_dict=result)  # update data in session state and storage
+df_result = pd.DataFrame([result])
+st.session_state['data_df'] = df_result

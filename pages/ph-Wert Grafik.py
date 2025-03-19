@@ -1,3 +1,10 @@
+# ====== Start Login Block ======
+from utils.login_manager import LoginManager
+LoginManager().go_to_login('Start.py')  
+# ====== End Login Block ======
+ 
+# ------------------------------------------------------------
+ 
 import streamlit as st
 
 st.title('pH-Wert Verlauf')
@@ -7,17 +14,11 @@ if data_df.empty:
     st.info('Keine pH-Wert Daten vorhanden. Berechnen Sie Ihren pH-Wert auf der Startseite.')
     st.stop()
 
-# Weight over time
-st.line_chart(data=data_df.set_index('timestamp')['H+ in mol/l'], 
-                use_container_width=True)
-st.caption('pH-Wert über Zeit (mol/l)')
-
-# Height over time 
-st.line_chart(data=data_df.set_index('timestamp')['ph'],
-                use_container_width=True)
-st.caption('Größe über Zeit (m)')
-
-# BMI over time
-st.line_chart(data=data_df.set_index('timestamp')['pH'],
+# pH over time
+st.line_chart(data=data_df.set_index('timestamp')['pH_wert'], 
                 use_container_width=True)
 st.caption('pH-Wert über Zeit')
+
+
+
+
