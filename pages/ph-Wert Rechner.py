@@ -68,7 +68,9 @@ else:
     st.write("Die Konzentration der Wasserstoffionen [H+] muss größer als 0 sein, um den pH-Wert zu berechnen.")
 
 # Save pH data
+from utils.helpers import ch_now
 result = {
+    'timestamp': ch_now(),
     'pH_wert': pH_wert,
     'kategorie': kategorie
 }
