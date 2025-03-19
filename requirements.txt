@@ -4,3 +4,13 @@ pandas
 webdav4
 fsspec
 matplotlib
+
+
+
+streamlit
+streamlit-authenticator
+pandas
+webdav4
+fsspec
+matplotlib
+numpy

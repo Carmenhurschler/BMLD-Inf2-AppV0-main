@@ -5,6 +5,7 @@ LoginManager().go_to_login('Start.py')
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
+from utils.data_manager import DataManager
 
 # Titel der App
 st.title("pH-Wert Rechner")
@@ -66,5 +67,9 @@ if pH_wert is not None:
 else:
     st.write("Die Konzentration der Wasserstoffionen [H+] muss größer als 0 sein, um den pH-Wert zu berechnen.")
 
- # Save pH data
-    DataManager().append_record(session_state_key='data_df', record_dict=result)  # update data in session state and storage
+# Save pH data
+result = {
+    'pH_wert': pH_wert,
+    'kategorie': kategorie
+}
+DataManager().append_record(session_state_key='data_df', record_dict=result)  # update data in session state and storage
